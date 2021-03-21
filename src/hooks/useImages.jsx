@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
 
 
 export const makeUseImage = (fetchImages) => () => {
-    const [state, dispatch] = useReducer(reducer, initialImageState)
+    const [state, dispatch] = useReducer(reducer, initialState)
     const {isLoading, currentPage} = state
     const loadMore = useCallback(() => dispatch({type: "LOAD_MORE_PAGES"}), [])
     const apiSuccess = useCallback((payload) => {
