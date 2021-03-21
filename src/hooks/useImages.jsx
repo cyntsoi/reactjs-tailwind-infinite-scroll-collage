@@ -30,7 +30,10 @@ const reducer = (state = initialState, action) => {
 export const makeUseImage = (fetchImages) => () => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const {isLoading, currentPage} = state
-    const loadMore = useCallback(() => dispatch({type: "LOAD_MORE_PAGES"}), [])
+    const loadMore = useCallback(() => {
+        if (isLoading) return;
+        dispatch({type: "LOAD_MORE_PAGES"})
+    }, [isLoading])
     const apiSuccess = useCallback((payload) => {
         if (!Array.isArray(payload)) throw new Error()
         dispatch({type: "API_SUCCESS", payload})

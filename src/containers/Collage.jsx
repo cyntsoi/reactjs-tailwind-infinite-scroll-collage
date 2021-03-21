@@ -2,6 +2,7 @@ import {useImages} from "../hooks/useImages"
 import {AspectRatio} from "../components/AspectRatio"
 import {Image} from "../components/Image"
 import React, {memo} from "react"
+import {InfiniteScrollLoader} from "../components/InfiniteScrollLoader"
 
 
 const layoutVariations = [
@@ -29,8 +30,10 @@ const CollageBlock = memo(({src, author, ratio, colClasses}) => {
     )
 })
 
+
 export default function Collage() {
     const {images, loadMore} = useImages()
+
     return (
         <>
             <div className="grid grid-cols-24 gap-10-24 gap-y-0 grid-flow-row-dense pb-32">
@@ -41,7 +44,7 @@ export default function Collage() {
                     }
                 )}
             </div>
-            <button onClick={loadMore}>Load More</button>
+           <InfiniteScrollLoader loadMore={loadMore} />
         </>
     )
 }
